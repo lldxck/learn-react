@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table{
+      border: 1px solid #eee;
+      border-collapse:collapse;
+    }
+    th,td{
+      border:1px solid #eee;
+      padding:10px 15px;
+    }
+    th{
+      background-color: #f9f9f9;
+    }
+    .book-count{
+      margin: 0 6px;
+    }
+  </style>
+</head>
+<body>
+  <div id='app'></div>
+</body>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script src="./utils.js"></script>
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(){
+      super()
+      this.state={
+        books:[
+          {
+            id:1,
+            name:'《JavaScript入门指南》',
+            publicationDate:'2012-02',
+            price:115,
+            count:1,
+          },
+          {
+            id:2,
+            name:'《21天入门Java》',
+            publicationDate:'2006-07',
+            price:88,
+            count:1,
+          },
+          {
+            id:3,
+            name:'《Vue的入门指南》',
+            publicationDate:'2017-10',
+            price:102,
+            count:1,
+          },
+          {
+            id:4,
+            name:'《MySql的那些事》',
+            publicationDate:'2018-09',
+            price:99,
+            count:1,
+          },
+          {
+            id:5,
+            name:'《HTTP入门》',
+            publicationDate:'2001-03',
+            price:89,
+            count:1,
+          },
+        ]
+      }
+    }
+
+    // 处理价格
+    // formatPrice(price) {
+    //   if(typeof price !== 'number'){
+    //     price=Number(price) || 0
+    //   }
+    //   return '¥'+price.toFixed(2)
+    // }
+    // 计算总价
+    totalPrice(){
+     let totalPrice =this.state.books.reduce((preVal,item,index) => {
+        return preVal+item.price*item.count
+      },0)
+      return formatPrice(totalPrice)
+    }
+    // 移除图书
+    deleteBookItem(index){
+      console.log(index)
+      this.setState({
+        books:this.state.books.filter((item,indey) => indey!=index)
+      })
+    }
+    // 书籍数量的改变
+    bookCountChange(index,number){
+      const newBooks = [...this.state.books]
+      newBooks[index].count+=number
+      this.setState({
+        books:newBooks
+      })
+    }
+
+    render(){
+      return(
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>图书名称</th>
+                <th>出版日期</th>
+                <th>图书价格</th>
+                <th>数量</th>
+                <th>操作</th>
+              </tr>  
+            </thead>  
+            <tbody>
+              {this.state.books.map((item,index) =>{
+                return(
+                  <tr>
+                    <td>{index+1}</td>  
+                    <td>{item.name}</td>  
+                    <td>{item.publicationDate}</td>  
+                    <td>{formatPrice(item.price)}</td>  
+                    <td>
+                      <button disabled={item.count<=1} onClick={() => this.bookCountChange(index,-1)}>-</button>  
+                      <span className="book-count">{item.count}</span>
+                      <button onClick={() => this.bookCountChange(index,1)}>+</button>  
+                    </td>  
+                    <td>
+                      <button onClick={() => this.deleteBookItem(index)}>移除</button>
+                    </td>                
+                  </tr>   
+                )
+              })}
+              
+            </tbody>
+          </table>
+          <h2>总价：{this.totalPrice()}</h2>
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(<App />,document.getElementById('app'))
+</script>
+</html>

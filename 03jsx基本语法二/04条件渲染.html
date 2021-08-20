@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'></div>
+</body>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(){
+      super()
+      this.state={
+        isLogin:true
+      }
+    }
+
+    btnClick(){
+      this.setState({
+        isLogin:!this.state.isLogin
+      })
+    }
+    render(){
+      const {isLogin} = this.state
+      let message=null
+      let btnText=null
+      // if判断  逻辑代码非常多的情况
+      if(isLogin){
+        message=<div>欢迎回来~</div>
+        btnText='退出'
+      }else{
+        message=<div>请先登录～</div>
+        btnText='登录'
+      }
+      return(
+        <div>
+          {/*<button>{btnText}</button>*/}
+           {/*三元表达式*/}
+          <button onClick={() => {this.btnClick()}}>{isLogin?'退出':'登录'}</button>
+          {message}
+          <hr />
+          {/*逻辑表达式：前面的条件不成立，后面的不继续执行*/}
+          <h2>{isLogin && '你好，哈哈哈'}</h2>
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(<App />,document.getElementById('app'))
+</script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+let message='Hello World'
+
+const btnClick= () => { 
+  message="Hello React"
+  console.log('按钮被点击',message)
+  render()
+}
+// 手动调用render 来渲染内容
+
+function render(){
+   ReactDOM.render(<div><div class="text">{message}</div><button class="btn" onClick={btnClick}>修改文本</button></div>,document.getElementById('app'))
+}
+render()
+
+ 
+</script>
+</html>

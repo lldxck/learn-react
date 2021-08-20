@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'></div>
+</body>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(){
+      super()
+      this.state={
+        title:'哈哈',
+        imgUrl:'https://p2.music.126.net/bqjw4gfRWnV_6AOrdw7lBw==/109951166129388094.jpg',
+        link:'http://www.baidu.com',
+
+        active:true,
+      }
+    }
+    getImgUrl(img,size){
+      return `${img}?param=${size}y${size}`
+    }
+    render(){
+      const {title,imgUrl,link,active} = this.state
+      return(
+        <div>
+          <div title={title}>哈哈</div>  
+          <img src={this.getImgUrl(imgUrl,140)} alt="" />
+          <a href={link} target="_link">百度一下</a>
+
+          {/*绑定class*/}
+          <div className="title name">张三</div>
+          <div className={"title name " + (active?'active':'')}>李四</div>
+
+          <label htmlFor=""></label>
+         
+          {/*绑定style*/}
+          <div style={{color:"red",fontSize:'20px'}}>嘿嘿</div>
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(<App />,document.getElementById('app'))
+</script>
+</html>

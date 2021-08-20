@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'></div>
+</body>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(){
+      super()
+      this.state={
+        movice:['大话西游','流浪地球','终结者','哈利波特'],
+        number:[12,34,32,56,35,77,45,17,28,9],
+      }
+    }
+
+    render(){
+      const {movice,number} = this.state
+      return(
+        <div>
+          <h2>电影列表</h2>
+          <ul>
+            {movice.map((item,index) => {
+              return <li>{item}</li>
+            })}
+          </ul> 
+          <h2>数字列表</h2>
+          <ul>
+            {number.filter((item,index) => {
+              return item>35
+            }).map((item,index) => {
+              return <li>{item}</li>
+            })}  
+          </ul> 
+          <h2>数字列表</h2>
+          <ul>
+            {number.filter(item => item>35).map(item =>  <li>{item}</li>)}  
+          </ul> 
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(<App />,document.getElementById('app'))
+</script>
+</html>

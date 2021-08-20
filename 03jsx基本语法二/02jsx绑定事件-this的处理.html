@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'></div>
+</body>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(){
+      super()
+      this.state={
+        name:'Jack',
+        age:22,
+      }
+      this.btnClick=this.btnClick.bind(this)
+    }
+    btnClick(){
+      console.log(this.state.name,this.state.age)
+    }
+    btnClick2 = () => {
+      console.log(this.state.name)
+    }
+    btnClick3(){
+      console.log(this.state.name,this.state.age)
+    }
+    render(){
+      return(
+        <div>
+          {/*方式一：bind绑定（显式绑定）*/}
+          {/*<button onClick={this.btnClick.bind(this)}>按钮1</button>*/}
+           <button onClick={this.btnClick}>按钮2</button> 
+          <hr />
+          {/*方式二:*/}
+          <button onClick={this.btnClick2}>按钮3</button>
+
+          {/*方式三：使用箭头函数，在函数内部调用方法*/}
+          <button onClick={() => {this.btnClick3()}}>按钮3</button>
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(<App />,document.getElementById('app'))
+</script>
+</html>

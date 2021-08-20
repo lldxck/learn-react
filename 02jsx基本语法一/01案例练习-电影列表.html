@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'></div>
+</body>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(){
+      super()
+      this.state={
+        movies:['大话西游','终结者','哈利波特','流浪地球']
+      }
+    }
+    liClick(item){
+      console.log(`电影是${item}`)
+    }
+    render(){
+      const {movies} = this.state
+      return(
+        <div>
+          <h2>电影列表</h2>
+          <ul>
+            {movies.map((item,index) => {
+              return <li onClick={() => {this.liClick(item)}}>{item}</li>
+            })}
+          </ul>
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(<App />,document.getElementById('app'))
+</script>
+</html>

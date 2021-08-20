@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+  class Person{
+    constructor(name,age){
+      this.name=name
+      this.age=age
+    }
+    running(){
+      console.log('running')
+    }
+  }
+
+  // class Student{
+  //   constructor(name,age,sno){
+  //     this.name=name
+  //     this.age=age
+  //     this.sno=sno
+  //   }
+  //   running(){
+  //     console.log('running')
+  //   }
+  // }
+
+  // class Teacher{
+  //   constructor(name,age,title){
+  //     this.name=name
+  //     this.age=age
+  //     this.title=title
+  //   }
+  //   running(){
+  //     console.log('runnig')
+  //   }
+  // }
+
+  class Student extends Person{
+    constructor(name,age,sno){
+      super(name,age)
+      this.sno=sno
+    }
+  }
+  const stu = new Student('jack',12,100)
+  console.log(stu.name,stu.age,stu.sno)
+  stu.running()
+
+  class Teacher extends Person{
+    constructor(name,age,title){
+      super(name,age)
+      this.title=title
+    }
+  }
+  const tea=new Teacher('tom',30,'语文')
+  console.log(tea.name,tea.age,tea.title)
+  tea.running()
+
+</script>
+</html>

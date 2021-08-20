@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'></div>
+</body>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(){
+      super()
+      this.state={
+        // 能在{}中正常显示的
+        name:"张三",
+        age:12,
+        movies:['星际穿越','大话西游','流浪地球'],
+
+        // 不能在{}中显示的（会被忽略）
+        // 想要显示这些类型的数据转成字符串
+        // 转字符串的方式：toString()、String()、+''来拼接字符串
+        test1:null,
+        test2:undefined,
+        test3:true,
+
+        // 不能展示的类型
+        obj:{
+          name:'tom'
+        },
+      }
+    }
+
+    render(){
+      return(
+        <div>
+          <div>{this.state.name}</div>  
+          <div>{this.state.age}</div>  
+          <div>{this.state.movies}</div>  
+
+          <div>{this.state.test1}</div>
+          <div>{this.state.test2}</div>
+          <div>{this.state.test3}</div>
+          <div>{this.state.test1+''}</div>
+          <div>{String(this.state.test2)}</div>
+          <div>{this.state.test3.toString()}</div>
+
+          
+          {/*<div>{this.state.obj}</div>*/}
+          <div>{this.state.obj.name}</div>
+
+
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(<App />,document.getElementById('app'))
+</script>
+</html>
