@@ -14,7 +14,7 @@ import './05React实现slot/style.css';
 // import App from './03组件间的通信/04父传子通信-属性验证'
 // import App from './03组件间的通信/05子传父通信-函数传递'
 
-import App from './04组件通信案例/App'
+// import App from './04组件通信案例/App'
 
 // import App from './05React实现slot/App'
 
@@ -37,6 +37,12 @@ import App from './04组件通信案例/App'
 
 // import App from './09知识点补充/01setState不可变数据的力量'
 // import App from './09知识点补充/02eventBus'
+
+// import App from './10受控组件和非受控组件/01.res的基本使用'
+// import App from './10受控组件和非受控组件/02.受控组件的基本使用'
+// import App from './10受控组件和非受控组件/03.受控组件-select的使用'
+// import App from './10受控组件和非受控组件/04.受控组件-多元素'
+import App from './10受控组件和非受控组件/05.非受控组件的基本使用'
 
 ReactDOM.render( <App />,document.getElementById('root')
 );
