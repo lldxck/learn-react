@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            color:red
+        }
+        .default{
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+
+class App extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            // 直接显示
+            name:'haha',
+            age:18,
+            fruits:['苹果','香蕉','橘子'],
+
+            // 未能直接显示，需转成字符串
+            isLogin:true,
+            isNotLogin:false,
+            sex:undefined,
+            movices:null,
+
+            title:'title',
+            count:0,
+            currentFruits:''
+
+
+
+        }
+        this.increment = this.increment.bind(this)
+    }
+    handleData(){
+        return this.state.name + this.state.age;
+    }
+    increment(){
+        this.setState({
+            count:this.state.count+1
+        })
+    }
+    decrement(){
+        this.setState({
+            count:this.state.count-1
+        })
+    }
+    changeText = ()=>{
+        this.setState({
+            name:'莉丝'
+        })
+    }
+    itemClick(item){
+        this.setState({
+            currentFruits:item
+        })
+    }
+    render(){
+        const {name,age,fruits,isLogin,isNotLogin,sex,movices,title,count,currentFruits} = this.state
+
+        let message=""
+        if(isLogin){
+            message="退出"
+        }else{
+            message="登录"
+        }
+        return(
+            <div>
+                <div>嵌入数据</div>
+                <div>{name}</div>    
+                <div>{age}</div>    
+                <div>{fruits}</div>    
+                <div>{isLogin}</div>    
+                <div>{isNotLogin}</div>    
+                <div>{sex}</div>    
+                <div>{movices}</div>    
+                <div>{String(isLogin)}</div>    
+                <div>{String(isNotLogin)}</div>    
+                <div>{String(sex)}</div>    
+                <div>{String(movices)}</div>    
+                <div>嵌入表达式</div>
+                {/*运算符表达式*/}
+                <div>{1+2}</div>
+                {/*三元表达式*/}
+                <div>
+                    {isLogin?'退出':'登陆'}
+                </div>
+                {/*函数的调用*/}
+                {this.handleData()}      
+                <div>绑定属性</div>
+                <div title={title}>title</div> 
+                {/*class*/}
+                <div class="default active">class样式</div>   
+                {/*style*/}
+                <div style={{fontSize:18,color:'green'}}>style样式</div>    
+                <div>绑定事件之this的处理</div>
+                <div>当前计数：{count}</div>
+                {/*方式一  bind绑定1*/}
+                {/*<button onClick={this.increment.bind(this)}>+1</button>*/}
+                {/*方式二  bind绑定2*/}
+                <button onClick={this.increment}>+1</button>
+                {/*箭头函数*/}
+                <button onClick={() => this.decrement()}>-1</button>
+                {/*命名函数*/}
+                <button onClick={this.changeText}>改变文字</button>
+
+                <div>绑定事件之参数传递</div>
+                <ul>
+                    {fruits.map((item,index) => {
+                        return <li key={item} onClick={() => this.itemClick(item)}>{item}</li>
+                    })}    
+                </ul>
+                <div>当前点击水果：{currentFruits}</div>
+
+                <div>条件渲染</div>
+                {/* if else*/}
+                <div>{message}</div>
+                {/*三元表达式*/}
+                <div>{isLogin?'退出':'登录'}</div>
+                {/*逻辑与 &&*/}
+                {isLogin && 'Hello React'}
+
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(<App />,document.getElementById('app'))
+
+</script>
+</html>
