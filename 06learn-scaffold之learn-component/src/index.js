@@ -42,7 +42,14 @@ import './05React实现slot/style.css';
 // import App from './10受控组件和非受控组件/02.受控组件的基本使用'
 // import App from './10受控组件和非受控组件/03.受控组件-select的使用'
 // import App from './10受控组件和非受控组件/04.受控组件-多元素'
-import App from './10受控组件和非受控组件/05.非受控组件的基本使用'
+// import App from './10受控组件和非受控组件/05.非受控组件的基本使用'
 
-ReactDOM.render( <App />,document.getElementById('root')
-);
+// import App from './11高阶组件的使用/01.高阶组件的定义方式'
+// ReactDOM.render( <App name="haha"/>,document.getElementById('root')
+
+// import App from './11高阶组件的使用/02.高阶组件的应用-增强props'
+// import App from './11高阶组件的使用/03.高阶组件的应用-增强props-默认'
+import App from './11高阶组件的使用/04.高阶组件的应用-增强props-改进'
+
+
+ReactDOM.render(<App />,document.getElementById('root'));
