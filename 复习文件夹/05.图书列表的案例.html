@@ -6,7 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-
+        table{
+            border:1px solid #eee;
+            border-collapse: collapse;
+        }
+        th,td{
+            border: 1px solid #eee;
+            padding: 8px 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -17,5 +25,115 @@
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <script type="text/babel">
 
+class App extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            books:[
+                {
+                    id:1,
+                    name:'《JavaScript高级指南》',
+                    publishDate:'2005-10',
+                    price:108,
+                    num:2,
+                },
+                {
+                    id:2,
+                    name:'《Vue.js权威指南》',
+                    publishDate:'2017-09',
+                    price:99,
+                    num:1,
+                },
+                {
+                    id:3,
+                    name:'《Java从入门到高级》',
+                    publishDate:'2010-02',
+                    price:102,
+                    num:1,
+                },
+                {
+                    id:4,
+                    name:'《React》',
+                    publishDate:'2020-06',
+                    price:128,
+                    num:1,
+                },
+                {
+                    id:5,
+                    name:'《ES6基础语法》',
+                    publishDate:'2014-03',
+                    price:68,
+                    num:1,
+                },
+            ]
+        }
+    }
+    handlePrice(price,decimal=2){
+        return price.toFixed(decimal)
+    }
+    totalPrice(){
+        let totalPrice = 0
+        totalPrice = this.state.books.reduce((prevVal,item) => {
+            return prevVal += item.price*item.num
+        },0)
+        return this.handlePrice(totalPrice);
+    }
+    handleNum(index,operation){
+       const newBooks = [...this.state.books]
+        newBooks[index].num+=operation
+        this.setState({
+            books:newBooks
+        })
+    }
+    deleteItem(index){
+        const newBooks = [...this.state.books]
+        const delBooks = newBooks.filter((item,indey) =>  index !== indey)
+        this.setState({
+            books:delBooks
+        })
+    }
+    render(){
+        const {books} = this.state
+        return(
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>书籍名称</th>
+                            <th>出版时间</th>
+                            <th>书籍价格</th>
+                            <th>书籍数量</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {books.map((item,index) => {
+                            return <tr key={item.id}>
+                            <td>{index+1}</td>    
+                            <td>{item.name}</td>    
+                            <td>{item.publishDate}</td>    
+                            <td>{this.handlePrice(item.price)}</td>    
+                            <td>
+                                <button disabled={item.num<=1} onClick={() => this.handleNum(index,-1)}>-1</button>
+                                <span>{item.num}</span>
+                                <button onClick={() => this.handleNum(index,+1)}>+1</button>
+                            </td>    
+                            <td>
+                                <button onClick={() => this.deleteItem(index)}>删除</button>
+                            </td>    
+                        </tr>   
+                        })}     
+                    </tbody>
+                </table>
+                <div>
+                    <h2>总价：{this.totalPrice()}</h2>
+                </div>
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(<App />,document.getElementById('app'))
 </script>
 </html>
