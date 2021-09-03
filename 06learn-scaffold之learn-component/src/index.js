@@ -49,7 +49,10 @@ import './05React实现slot/style.css';
 
 // import App from './11高阶组件的使用/02.高阶组件的应用-增强props'
 // import App from './11高阶组件的使用/03.高阶组件的应用-增强props-默认'
-import App from './11高阶组件的使用/04.高阶组件的应用-增强props-改进'
+// import App from './11高阶组件的使用/04.高阶组件的应用-增强props-改进'
+// import App from './11高阶组件的使用/05.高阶组件的应用-登录鉴权操作'
+// import App from './11高阶组件的使用/06.高阶组件的应用-生命周期的劫持-默认'
+import App from './11高阶组件的使用/07.高阶组件的应用-生命周期的劫持-改进'
 
 
 ReactDOM.render(<App />,document.getElementById('root'));
