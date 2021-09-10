@@ -55,8 +55,10 @@ import './05React实现slot/style.css';
 // import App from './11高阶组件的使用/07.高阶组件的应用-生命周期的劫持-改进'
 
 // import App from './12组件内容补充/01.ref的转发'
-import App from './12组件内容补充/02.portals的使用'
-import './css/index.css'
+// import App from './12组件内容补充/02.portals的使用'
+// import './css/index.css'
+// import App from './12组件内容补充/03.fargment的使用'
+import App from './12组件内容补充/04.strictMode严格模式'
 
 
 ReactDOM.render(<App />,document.getElementById('root'));
