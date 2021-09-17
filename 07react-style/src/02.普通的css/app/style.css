@@ -1,0 +1,9 @@
+ /* 会覆盖所有的title #id的权重比较大 */
+ /* #app .title{
+    color:orange;
+    font-size: 25px;
+} */
+#app >.title{
+    color:orange;
+    font-size: 25px;
+}
