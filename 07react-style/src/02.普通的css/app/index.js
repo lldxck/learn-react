@@ -7,7 +7,7 @@ export default class App extends PureComponent {
     render() {
         return (
             <div id="app">
-                <div class="title">我是App的title</div>
+                <div className="title">我是App的title</div>
                 App
                 <Home />
                 <Profile />
