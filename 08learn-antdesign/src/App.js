@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import classNames from "classnames";
-import { Button, Space } from "antd";
+import { Button, Space, DatePicker } from "antd";
 import { PoweroffOutlined } from "@ant-design/icons";
 
 export default class App extends PureComponent {
@@ -45,6 +45,12 @@ export default class App extends PureComponent {
             icon={<PoweroffOutlined />}
             loading={loadings[2]}
             onClick={() => this.enterLoading(2)}
+          />
+        </Space>
+        <Space>
+          <DatePicker
+            renderExtraFooter={() => "extra footer"}
+            allowClear={false}
           />
         </Space>
       </>
