@@ -72,6 +72,42 @@ export default class App extends PureComponent {
     } catch (err) {
       console.log("err错误信息", err);
     }
+
+    // axios.all
+    const request1 = axios.get("https://httpbin.org/get", {
+      params: { name: "zhangsan", age: 10 },
+    });
+    const request2 = axios.post("https://httpbin.org/post", {
+      name: "lisi",
+      age: 19,
+    });
+
+    // axios.all([request1, request2]).then((res) => {
+    //   console.log(res);
+    // });
+    axios.all([request1, request2]).then(([res1, res2]) => {
+      console.log(res1, res2);
+    });
+
+    // promise.all
+    const promise1 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(request1);
+      }, 1000);
+    });
+
+    const promise2 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(request2);
+      }, 3000);
+    });
+
+    Promise.all([promise1, promise2]).then((res) => {
+      console.log(res);
+    });
+    Promise.all([promise1, promise2]).then(([res1, res2]) => {
+      console.log(res1, res2);
+    });
   }
   render() {
     return <div>App</div>;
